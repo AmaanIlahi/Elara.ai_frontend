@@ -36,3 +36,28 @@ export type Message =
       type: "booking-card";
       booking: BookingCardData;
     });
+
+
+export type IntakeSummary = {
+  firstName: string;
+  lastName: string;
+  dob: string;
+  phone: string;
+  email: string;
+  reason: string;
+};
+
+export type AppointmentSlot = {
+  id: string;
+  doctorName: string;
+  specialty: string;
+  bodyPart: string;
+  date: string;
+  time: string;
+  weekday: string;
+};
+
+export type SchedulingResponse = {
+  summary: IntakeSummary;
+  slots: AppointmentSlot[];
+};
