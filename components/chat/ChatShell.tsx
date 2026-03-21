@@ -134,7 +134,7 @@ export default function ChatShell() {
         phone_number: null,
       });
 
-      // const activeSessionId = response.session_id || sessionId || null;
+      const activeSessionId = response.session_id || sessionId || null;
 
       if (response.session_id) {
         setStoredSessionId(response.session_id);
@@ -173,22 +173,21 @@ export default function ChatShell() {
             body_part: response.metadata.body_part,
             booked_slot: response.metadata.booked_slot,
           },
-        });
+        });       
 
-        // if (response.session_id) {
-        //   try {
-        //     await sendBookingConfirmationEmail(response.session_id);
-        //   } catch (error) {
-        //     console.error("Failed to send confirmation email", error);
-        //   }
-        // }
-      //   if (activeSessionId) {
-      //   sendBookingConfirmationEmail(activeSessionId).catch((error) => {
-      //     console.error("Failed to send confirmation email", error);
-      //   });
-      // }
+        // console.log("BOOKING RESPONSE SESSION ID", response.session_id);
+        // console.log("CURRENT SESSION ID BEFORE EMAIL", activeSessionId);
+
+      if (activeSessionId) {
+        try {
+          await sendBookingConfirmationEmail(activeSessionId);
+        } catch (error) {
+          // console.error("Failed to send confirmation email", error);
+          alert(error instanceof Error ? error.message : "Email send failed");
+          // console.error("Failed to send confirmation email", error);
+        }
       }
-
+      }
       
     } catch (error: any) {
       removeTypingMessage();

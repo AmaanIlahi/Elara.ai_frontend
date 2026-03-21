@@ -124,7 +124,7 @@ export async function startVoiceHandoff(
 
 export async function sendBookingConfirmationEmail(sessionId: string) {
   const response = await fetch(
-    `${API_BASE_URL}/api/v1/booking/send-confirmation-email`,
+    `${API_BASE_URL}/api/v1/send-confirmation-email`,
     {
       method: "POST",
       headers: {
@@ -137,6 +137,10 @@ export async function sendBookingConfirmationEmail(sessionId: string) {
   const data = await response.json().catch(() => null);
 
   if (!response.ok) {
+    console.error("EMAIL API ERROR", {
+      status: response.status,
+      data,
+    });
     throw new Error(data?.detail || "Failed to send confirmation email");
   }
 
