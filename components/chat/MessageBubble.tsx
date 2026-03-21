@@ -14,7 +14,7 @@ export default function MessageBubble({
 
   if (message.type === "typing") {
     return (
-      <div className="flex justify-start">
+      <div className="flex justify-start animate-message-in">
         <div className="rounded-2xl border border-white/40 bg-white/70 px-4 py-3 text-slate-800 shadow-sm backdrop-blur-md">
           <div className="flex items-center gap-1">
             <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400 [animation-delay:-0.3s]" />
@@ -27,7 +27,7 @@ export default function MessageBubble({
   }
 
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
+    <div className={`flex animate-message-in ${isUser ? "justify-end" : "justify-start"}`}>
       <div className="max-w-[85%]">
         {message.type === "text" ? (
           <div
