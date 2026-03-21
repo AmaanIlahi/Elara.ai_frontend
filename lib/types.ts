@@ -35,6 +35,16 @@ export type Message =
       sender: "assistant";
       type: "booking-card";
       booking: BookingCardData;
+    })
+  | (BaseMessage & {
+      sender: "assistant";
+      type: "intake-summary";
+      summary: IntakeSummary;
+    })
+  | (BaseMessage & {
+      sender: "assistant";
+      type: "appointment-options";
+      slots: AppointmentSlot[];
     });
 
 
@@ -60,4 +70,15 @@ export type AppointmentSlot = {
 export type SchedulingResponse = {
   summary: IntakeSummary;
   slots: AppointmentSlot[];
+};
+
+export type SchedulingField = keyof IntakeSummary;
+
+export type SchedulingState = {
+  active: boolean;
+  currentField: SchedulingField | null;
+  data: Partial<IntakeSummary>;
+  matchedSlots: AppointmentSlot[];
+  filteredSlots: AppointmentSlot[];
+  isComplete: boolean;
 };
