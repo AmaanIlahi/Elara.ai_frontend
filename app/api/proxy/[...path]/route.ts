@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://54.242.97.178:8000";
+const BACKEND_URL = process.env.BACKEND_URL || "https://api.elara-ai.quest";
 
 export async function POST(
   req: NextRequest,
